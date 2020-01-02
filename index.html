@@ -11,6 +11,32 @@
 <body>
     <input type="file" id="ip-file" />
 </body>
+<!-- The core Firebase JS SDK is always required and must be listed first -->
+<script src="https://www.gstatic.com/firebasejs/7.6.1/firebase-app.js"></script>
+
+<!-- TODO: Add SDKs for Firebase products that you want to use
+     https://firebase.google.com/docs/web/setup#available-libraries -->
+<script src="https://www.gstatic.com/firebasejs/7.6.1/firebase-analytics.js"></script>
+<script src="https://www.gstatic.com/firebasejs/7.6.1/firebase-storage.js"></script>
+
+
+
+<script>
+    // Your web app's Firebase configuration
+    var firebaseConfig = {
+        apiKey: "AIzaSyA7C7xsxPzpwiC76s2uLe3p-rOzV8yHRvI",
+        authDomain: "fir-733b2.firebaseapp.com",
+        databaseURL: "https://fir-733b2.firebaseio.com",
+        projectId: "fir-733b2",
+        storageBucket: "fir-733b2.appspot.com",
+        messagingSenderId: "949386181909",
+        appId: "1:949386181909:web:c223834ea7c518c8963d1c",
+        measurementId: "G-PG812VXM5R"
+    };
+    // Initialize Firebase
+    firebase.initializeApp(firebaseConfig);
+    firebase.analytics();
+</script>
 
 <script>
 
@@ -31,7 +57,7 @@
             let blob = event.target.result;
 
             // Write your code here
-             var storage = firebase.storage();
+            var storage = firebase.storage();
             var storageRef = storage.ref('files/' + file.name);
             var task = storageRef.put(file);
             task.on('state_changed', (snapshot) => {
@@ -56,12 +82,11 @@
                         break;
 
                 }
+            });
 
-        });
-
-        reader.addEventListener('error', (event) => {
-            alert('Unable to read file');
-        })
+            reader.addEventListener('error', (event) => {
+                alert('Unable to read file');
+            })
         })
     }
 
